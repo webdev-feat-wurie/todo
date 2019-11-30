@@ -1,0 +1,21 @@
+{
+  "name": "todo",
+  "version": "1.0.0",
+  "description": "service todo",
+  "main": "index.js",
+  "repository": "https://github.com/webdev-feat-wurie/todo",
+  "author": "Webdev feat. wurie",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-jwt": "^5.3.1",
+    "mongoose": "^5.7.13"
+  },
+  "devDependencies": {
+    "dotenv": "^8.2.0"
+  },
+  "scripts": {
+    "start": "node index.js"
+  }
+}
