@@ -1,28 +1,29 @@
 const router = require("express").Router();
-const Note = require("./schema");
+const Todo = require("./schema");
 
-router.get("/notes", async (req, res) => {
+router.get("/todos", async (req, res) => {
   try {
     const user = req.user;
-    const notes = await Note.find({
-      user_id: user.user_id
+    const todos = await Todo.find({
+      userID: user.user_id
     });
 
-    res.json(notes);
+    res.json(todos);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
 });
 
-router.post("/notes", async (req, res) => {
-  const note = new Note({
-    user_id: req.user.user_id,
-    note: req.body.note
+router.post("/todos", async (req, res) => {
+  const todo = new Todo({
+    userID: req.user.user_id,
+    description: req.body.description,
+    reminderDate: new Date(req.body.reminder_date)
   });
 
   try {
-    const newNote = await note.save();
-    res.status(201).json({ newNote });
+    const newTodo = await todo.save();
+    res.status(201).json({ newTodo });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }

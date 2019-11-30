@@ -1,14 +1,22 @@
 let mongoose = require("mongoose");
 
-const noteSchema = mongoose.Schema({
-  user_id: {
+const todoSchema = mongoose.Schema({
+  userID: {
     type: Number,
     required: true
   },
-  note: {
-    type: String,
+  description: {
+    type: String
+  },
+  createdDate: {
+    type: Date,
+    required: true,
+    default: Date.now
+  },
+  reminderDate: {
+    type: Date,
     required: true
   }
 });
 
-module.exports = mongoose.model("Note", noteSchema);
+module.exports = mongoose.model("Todo", todoSchema);
