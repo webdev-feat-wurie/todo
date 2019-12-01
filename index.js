@@ -1,6 +1,7 @@
 const express = require("express");
 const jwt = require("express-jwt");
 const mongoose = require("mongoose");
+const cors = require("cors");
 
 const app = express();
 const router = require("./router");
@@ -13,6 +14,7 @@ mongoose.connection.on("error", error => console.error(error));
 mongoose.connection.once("open", () => console.log("connected to database"));
 
 app.use(express.json());
+app.use(cors());
 app.use(
   jwt({
     secret: "radenajengwurianditawahyumurticandrakiranadewi"
