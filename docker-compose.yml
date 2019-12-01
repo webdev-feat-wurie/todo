@@ -1,20 +1,20 @@
 version: "3"
 
 services:
-  db:
+  todo_db:
     image: mongo:4.2
     volumes:
-      - mongodb:/data/db
-      - mongodb_config:/data/configdb
-  web:
+      - todo_mongodb:/data/db
+      - todo_mongodb_config:/data/configdb
+  todo_web:
     build: .
     volumes:
       - .:/code
     ports:
       - "21701:21701"
     depends_on:
-      - db
+      - todo_db
 
 volumes:
-  mongodb:
-  mongodb_config:
+  todo_mongodb:
+  todo_mongodb_config:
