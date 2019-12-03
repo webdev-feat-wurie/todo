@@ -1,0 +1,12 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: todo-web-service
+spec:
+  selector:
+    app: todo-web-container
+  ports:
+    - protocol: TCP
+      port: 21701
+      targetPort: 21701
+  type: NodePort

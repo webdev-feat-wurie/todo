@@ -7,7 +7,9 @@ const app = express();
 const router = require("./router");
 
 const port = process.env.PORT || 21701;
-const mongodbURL = process.env.mongodbURL || "mongodb://todo_db:27017/todos";
+const mongodbURL =
+  `mongodb://${process.env.MONGODB_HOST}/notes` ||
+  "mongodb://note_db:27017/notes";
 
 mongoose.connect(mongodbURL, { useNewUrlParser: true });
 mongoose.connection.on("error", error => console.error(error));
