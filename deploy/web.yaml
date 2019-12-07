@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todo-web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: todo-web-container
+  template:
+    metadata:
+      labels:
+        app: todo-web-container
+    spec:
+      containers:
+        - name: todo-web
+          image: ashpx/todo-web
+          ports:
+            - containerPort: 21701
+          env:
+            - name: MONGODB_HOST
+              value: mongodb-service
+
+          volumeMounts:
+            - name: mongodb-volume-mount
+              mountPath: /var/lib/busybox
+
+      volumes:
+        - name: mongodb-volume-mount
+          persistentVolumeClaim:
+            claimName: mongodb-pvc
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: todo-web-service
+spec:
+  selector:
+    app: todo-web-container
+  ports:
+    - protocol: TCP
+      port: 21701
+      targetPort: 21701
+  type: NodePort
