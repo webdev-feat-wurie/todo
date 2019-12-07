@@ -21,6 +21,12 @@ spec:
             - name: MONGODB_HOST
               value: mongodb-service
 
+          resources:
+            requests:
+              cpu: 100m
+            limits:
+              cpu: 200m
+
           volumeMounts:
             - name: mongodb-volume-mount
               mountPath: /var/lib/busybox
